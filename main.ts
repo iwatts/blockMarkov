@@ -24,5 +24,5 @@ function markovMe() {
 		if (!word || !markovChain.hasOwnProperty(word)) word = words[Math.floor(Math.random() * words.length)]
 	}
 	
-    document.getElementById('markovResults').innerText = result;
+    return result;
 }
