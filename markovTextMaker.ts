@@ -1,15 +1,23 @@
-const fs = require('fs');
+const fs = require('fs')
 
 const client = new XMLHttpRequest();
-const files = fs.readdirSync('/assets/photos/');
+const files = fs.readdirSync('/textSamples/');
 
-function textMaker(files) {
+function textMaker(files: {}) {
     let fullString = ''
+    const filesLength =  Object.keys(files).length
 
-    client.open('GET', '/foo.txt');
-    client.onreadystatechange = function() {
-    alert(client.responseText);
+    for(let i=0; i < filesLength; i++){
+        client.open('GET', files[i]);
+        client.onreadystatechange = () => {
+            alert(client.responseText);
+        }
+        fullString += client.send();
     }
-    client.send();
+
     return fullString
+}
+
+function fullBodyString() {
+    textMaker(files)
 }
